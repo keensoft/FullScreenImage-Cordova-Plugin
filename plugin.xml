@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="FullScreenImage" version="1.0.0">
+    <name>Full Screen Image</name>
+    <author>keensoft (http://keensoft.es/)</author>
+    <description>Show image in full screen mode with native components.</description>
+    <keywords>cordova, image, spanish, fullscreen, photos, keensoft, gallery</keywords>
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+    <js-module src="www/fullscreenimage.js" name="FullScreenImage">
+        <clobbers target="FullScreenImage" />
+    </js-module>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FullScreenImage">
+                <param name="ios-package" value="FullScreenImage" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/FullScreenImage.h" />
+        <source-file src="src/ios/FullScreenImage.m" />
+    </platform>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FullScreenImage">
+                <param name="android-package" value="es.keensoft.fullscreenimage.FullScreenImage" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/FullScreenImage.java" target-dir="src/es/keensoft/fullscreenimage" />
+    </platform>
+</plugin>
