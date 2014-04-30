@@ -6,7 +6,7 @@ Plugin to show images from cordova project and use it with native components.
 Installation:
 --------------
 
-`cordova plugin add https://slaptot@bitbucket.org/slaptot/full-screen-cordova-plugin.git`
+`cordova plugin add https://github.com/keensoft/FullScreenImage-Cordova-Plugin.git`
 
 Usage:
 --------------
