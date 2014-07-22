@@ -1,16 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="FullScreenImage" version="1.0.0">
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="es.keensoft.fullscreenimage"
+    version="1.0.0">
+
     <name>Full Screen Image</name>
-    <author>keensoft (http://keensoft.es/)</author>
-    <description>Show image in full screen mode with native components.</description>
-    <keywords>cordova, image, spanish, fullscreen, photos, keensoft, gallery</keywords>
+
     <engines>
         <engine name="cordova" version=">=3.0.0" />
     </engines>
+
+    <author>keensoft (http://keensoft.es/)</author>
+    <description>Show image in full screen mode with native components.</description>
+    <keywords>cordova, image, spanish, fullscreen, photos, keensoft, gallery</keywords>
+
+    <license>MIT</license>
+
     <js-module src="www/fullscreenimage.js" name="FullScreenImage">
-        <clobbers target="FullScreenImage" />
+        <clobbers target="window.FullScreenImage" />
     </js-module>
-    <platform name="ios">
+
+    <!-- ios -->
+     <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="FullScreenImage">
                 <param name="ios-package" value="FullScreenImage" />
@@ -19,7 +29,9 @@
         <header-file src="src/ios/FullScreenImage.h" />
         <source-file src="src/ios/FullScreenImage.m" />
     </platform>
-    <platform name="android">
+
+	<!-- Android -->
+ 	<platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="FullScreenImage">
                 <param name="android-package" value="es.keensoft.fullscreenimage.FullScreenImage" />
@@ -27,4 +39,5 @@
         </config-file>
         <source-file src="src/android/FullScreenImage.java" target-dir="src/es/keensoft/fullscreenimage" />
     </platform>
+    
 </plugin>
