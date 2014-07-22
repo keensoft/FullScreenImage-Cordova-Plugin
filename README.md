@@ -8,6 +8,10 @@ Installation:
 
 `cordova plugin add https://github.com/keensoft/FullScreenImage-Cordova-Plugin.git`
 
+OR from http://plugins.cordova.io/ 
+
+`cordova plugin add es.keensoft.fullscreenimage`
+
 Usage:
 --------------
 
