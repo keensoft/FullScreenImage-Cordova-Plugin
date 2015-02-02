@@ -17,8 +17,12 @@ Usage:
 
 Images should be inside www/**pathOfImage**
 
-Usage with your javascript code:
-`FullScreenImage.showImageURL(imageSrc);`
+Usage with your javascript code (iOS/Android):
+`window.FullScreenImage.showImageURL(imageSrc);`
+
+
+Usage with Base64 String javascript code (iOS):
+`window.FullScreenImage.showImageBase64(base64String,name);`
 
 Platforms:
 --------------
@@ -27,6 +31,10 @@ Full Screen Image Plugin, open **UIDocumentInteractionController** to show image
 
 * Android
 Full Screen Image Plugin, use Intent to open it with external Imageviewer. This plugins checks Application *can use getExternalStorageDirectory*
+
+Example App
+--------------
+You can test the plugin fast and easy. Go to "example/" path and execute [ionic][4] project. Get started with ionic [here][5]
 
 Uninstall
 --------------
@@ -46,6 +54,8 @@ Contact: [info@keensoft.es][2]
 Web: [http://keensoft.es][3]
 
 
-  [1]: http://www.keensoft.es/wp-content/uploads/2013/04/keensoft-logo1.png
-  [2]: info@keensoft.es
-  [3]: http://keensoft.es
+[1]: http://www.keensoft.es/wp-content/uploads/2013/04/keensoft-logo1.png
+[2]: info@keensoft.es
+[3]: http://keensoft.es
+[4]: http://ionicframework.com/
+[5]: http://ionicframework.com/getting-started/

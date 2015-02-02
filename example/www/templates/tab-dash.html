@@ -1,0 +1,42 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img ng-src="{{imageBase64}}">
+              <h2>Open Base64 Image</h2>
+              <p>Use "FullScreenImage.showImageBase64(base64,name)"</p>
+          </div>
+
+          <div class="item item-image">
+              <img ng-src="{{imageBase64}}">
+          </div>
+
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64,'')">
+              <i class="icon ion-arrow-expand"></i>
+              Show base64 image
+          </a>
+
+      </div>
+
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img ng-src="{{imageUrlPath}}">
+              <h2>Open Url Path Image</h2>
+              <p>Use "FullScreenImage.showImageUrl(url)"</p>
+          </div>
+
+          <div class="item item-image">
+              <img ng-src="{{imageUrlPath}}">
+          </div>
+
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageUrl(imageUrlPath)">
+              <i class="icon ion-arrow-expand"></i>
+              Show URL Path image
+          </a>
+
+      </div>
+
+  </ion-content>
+</ion-view>
