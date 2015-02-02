@@ -17,12 +17,8 @@ Usage:
 
 Images should be inside www/**pathOfImage**
 
-Usage with your javascript code (iOS/Android):
-`window.FullScreenImage.showImageURL(imageSrc);`
-
-
-Usage with Base64 String javascript code (iOS):
-`window.FullScreenImage.showImageBase64(base64String,name);`
+Usage with your javascript code:
+`FullScreenImage.showImageURL(imageSrc);`
 
 Platforms:
 --------------
@@ -35,6 +31,8 @@ Full Screen Image Plugin, use Intent to open it with external Imageviewer. This 
 Example App
 --------------
 You can test the plugin fast and easy. Go to "example/" path and execute [ionic][4] project. Get started with ionic [here][5]
+
+First execute: "ionic platform add ios" and then you can open iOS project.
 
 Uninstall
 --------------

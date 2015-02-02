@@ -2,10 +2,10 @@
 <widget id="com.ionicframework.example265061" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>example</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Full Screen Image Example
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="alberto.munoz@keensoft.es" href="http://keensoft.es/">
+      keensoft
     </author>
   <content src="index.html"/>
   <access origin="*"/>
