@@ -4,7 +4,7 @@
 
           <div class="item item-avatar">
               <img ng-src="{{imageBase64}}">
-              <h2>Open Base64 Image</h2>
+              <h2>Open Base64 Image (PNG transparency)</h2>
               <p>Use "FullScreenImage.showImageBase64(base64,name)"</p>
           </div>
 
@@ -13,6 +13,25 @@
           </div>
 
           <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64,'')">
+              <i class="icon ion-arrow-expand"></i>
+              Show base64 image
+          </a>
+
+      </div>
+
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img ng-src="{{imageBase64JPEG2}}">
+              <h2>Open Base64 Image (JPG)</h2>
+              <p>Use "FullScreenImage.showImageBase64(base64,name)"</p>
+          </div>
+
+          <div class="item item-image">
+              <img ng-src="{{imageBase64JPEG2}}">
+          </div>
+
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64JPEG2,'')">
               <i class="icon ion-arrow-expand"></i>
               Show base64 image
           </a>
@@ -32,6 +51,25 @@
           </div>
 
           <a class="item item-icon-left assertive" href="#" ng-click="openImageUrl(imageUrlPath)">
+              <i class="icon ion-arrow-expand"></i>
+              Show URL Path image
+          </a>
+
+      </div>
+
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img ng-src="{{imageUrlPathJPEG}}">
+              <h2>Open Url Path Image (JPG)</h2>
+              <p>Use "FullScreenImage.showImageUrl(url)"</p>
+          </div>
+
+          <div class="item item-image">
+              <img ng-src="{{imageUrlPathJPEG}}">
+          </div>
+
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageUrl(imageUrlPathJPEG)">
               <i class="icon ion-arrow-expand"></i>
               Show URL Path image
           </a>
