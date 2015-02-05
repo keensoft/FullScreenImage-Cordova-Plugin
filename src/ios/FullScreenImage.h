@@ -9,5 +9,5 @@
 @interface FullScreenImage : CDVPlugin <UIDocumentInteractionControllerDelegate>
 
 - (void) showImageURL:(CDVInvokedUrlCommand*)command;
-
+- (void) showImageBase64:(CDVInvokedUrlCommand*)command;
 @end

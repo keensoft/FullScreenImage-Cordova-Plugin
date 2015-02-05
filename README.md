@@ -15,10 +15,11 @@ OR from http://plugins.cordova.io/
 Usage:
 --------------
 
-Images should be inside www/**pathOfImage**
-
-Usage with your javascript code:
+Usage with your javascript code (Images should be inside www/**pathOfImage**):
 `FullScreenImage.showImageURL(imageSrc);`
+
+Usage with base64 image String code:
+`FullScreenImage.showImageURL(base64String, name, type);`
 
 Platforms:
 --------------
@@ -27,6 +28,12 @@ Full Screen Image Plugin, open **UIDocumentInteractionController** to show image
 
 * Android
 Full Screen Image Plugin, use Intent to open it with external Imageviewer. This plugins checks Application *can use getExternalStorageDirectory*
+
+Example App
+--------------
+You can test the plugin fast and easy. Go to "example/" path and execute [ionic][4] project. Get started with ionic [here][5]
+
+First execute: "ionic platform add ios" and then you can open iOS project.
 
 Uninstall
 --------------
@@ -46,6 +53,8 @@ Contact: [info@keensoft.es][2]
 Web: [http://keensoft.es][3]
 
 
-  [1]: http://www.keensoft.es/wp-content/uploads/2013/04/keensoft-logo1.png
-  [2]: info@keensoft.es
-  [3]: http://keensoft.es
+[1]: http://www.keensoft.es/wp-content/uploads/2013/04/keensoft-logo1.png
+[2]: info@keensoft.es
+[3]: http://keensoft.es
+[4]: http://ionicframework.com/
+[5]: http://ionicframework.com/getting-started/
