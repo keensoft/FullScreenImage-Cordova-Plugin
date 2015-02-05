@@ -1,18 +1,20 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
+
+
       <div class="list card">
 
           <div class="item item-avatar">
-              <img ng-src="{{imageBase64}}">
-              <h2>Open Base64 Image (PNG transparency)</h2>
-              <p>Use "FullScreenImage.showImageBase64(base64,name)"</p>
+              <img ng-src="data:image/gif;base64,{{imageBase64GIF}}">
+              <h2>Open Base64 Image (GIF)</h2>
+              <p>Use "FullScreenImage.showImageBase64(base64,name,type)"</p>
           </div>
 
           <div class="item item-image">
-              <img ng-src="{{imageBase64}}">
+              <img ng-src="data:image/gif;base64,{{imageBase64GIF}}">
           </div>
 
-          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64,'')">
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64GIF,'','gif')">
               <i class="icon ion-arrow-expand"></i>
               Show base64 image
           </a>
@@ -22,16 +24,35 @@
       <div class="list card">
 
           <div class="item item-avatar">
-              <img ng-src="{{imageBase64JPEG2}}">
-              <h2>Open Base64 Image (JPG)</h2>
-              <p>Use "FullScreenImage.showImageBase64(base64,name)"</p>
+              <img ng-src="data:image/png;base64,{{imageBase64}}">
+              <h2>Open Base64 Image (PNG)</h2>
+              <p>Use "FullScreenImage.showImageBase64(base64,name,type)"</p>
           </div>
 
           <div class="item item-image">
-              <img ng-src="{{imageBase64JPEG2}}">
+              <img ng-src="data:image/png;base64,{{imageBase64}}">
           </div>
 
-          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64JPEG2,'')">
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64,'','png')">
+              <i class="icon ion-arrow-expand"></i>
+              Show base64 image
+          </a>
+
+      </div>
+
+      <div class="list card">
+
+          <div class="item item-avatar">
+              <img ng-src="data:image/jpeg;base64,{{imageBase64JPEG}}">
+              <h2>Open Base64 Image (JPG)</h2>
+              <p>Use "FullScreenImage.showImageBase64(base64,name,type)"</p>
+          </div>
+
+          <div class="item item-image">
+              <img ng-src="data:image/jpeg;base64,{{imageBase64JPEG}}">
+          </div>
+
+          <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64JPEG,'','jpg')">
               <i class="icon ion-arrow-expand"></i>
               Show base64 image
           </a>

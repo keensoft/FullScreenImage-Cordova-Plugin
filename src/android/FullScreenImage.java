@@ -140,17 +140,17 @@ public class FullScreenImage extends CordovaPlugin {
         
         String base64Image = getJSONProperty(json, "base64");
         String name = getJSONProperty(json, "name");
+        String extension = getJSONProperty(json, "type");
         File pPath= Environment.getExternalStorageDirectory();
         if(!pPath.exists()) {
             boolean bReturn= pPath.mkdirs();
         }
         
         try {
-            String filetype = base64Image.substring(base64Image.indexOf(":")+1, base64Image.lastIndexOf(";"));
-            filetype = filetype.substring(filetype.indexOf("/")+1, filetype.length());
-            byte[] imageAsBytes = Base64.decode(base64Image.toString(), 0);
             
-            File filePath= new File(pPath, "output."+filetype);
+            byte[] imageAsBytes = Base64.decode(base64Image, Base64.DEFAULT);
+            
+            File filePath= new File(pPath, "output."+extension);
             filePath.createNewFile();
             
             FileOutputStream os = new FileOutputStream(filePath, true);

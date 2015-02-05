@@ -19,7 +19,7 @@ Usage with your javascript code (Images should be inside www/**pathOfImage**):
 `FullScreenImage.showImageURL(imageSrc);`
 
 Usage with base64 image String code:
-`FullScreenImage.showImageURL(base64String, name);`
+`FullScreenImage.showImageURL(base64String, name, type);`
 
 Platforms:
 --------------
