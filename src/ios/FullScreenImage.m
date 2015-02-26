@@ -62,7 +62,7 @@
         
         NSString *imageType = [[command.arguments objectAtIndex:0] valueForKey:@"type"];
         
-        if([imageType isKindOfClass:[NSNull class]] || [imageName isEqualToString:@""]){
+        if([imageName isKindOfClass:[NSNull class]] || [imageName isEqualToString:@""]){
             imageName = @"default";
         }
         
