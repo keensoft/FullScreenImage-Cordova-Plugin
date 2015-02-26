@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69ef7f6b-f6b8-4002-8983-3394f5520cd3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/.idea/example.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/keensoft-example/.idea/workspace.xml" afterPath="$PROJECT_DIR$/keensoft-example/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="69ef7f6b-f6b8-4002-8983-3394f5520cd3" name="Default" comment="" />
     <ignored path="FullScreenImage-Cordova-Plugin.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
