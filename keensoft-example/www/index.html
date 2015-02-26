@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-pane >
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Full Screen Plugin</h1>
+      </ion-header-bar>
+      <ion-content ng-controller="homeCtrl">
+          <div class="list card">
+
+              <div class="item item-avatar">
+                  <img ng-src="data:image/gif;base64,{{imageBase64GIF}}">
+                  <h2>Open Base64 Image (GIF)</h2>
+                  <p>Use "FullScreenImage.showImageBase64(base64,name,type)"</p>
+              </div>
+
+              <div class="item item-image">
+                  <img ng-src="data:image/gif;base64,{{imageBase64GIF}}">
+              </div>
+
+              <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64GIF,'keengif','gif')">
+                  <i class="icon ion-arrow-expand"></i>
+                  Show base64 image
+              </a>
+
+          </div>
+
+          <div class="list card">
+
+              <div class="item item-avatar">
+                  <img ng-src="data:image/png;base64,{{imageBase64}}">
+                  <h2>Open Base64 Image (PNG)</h2>
+                  <p>Use "FullScreenImage.showImageBase64(base64,name,type)"</p>
+              </div>
+
+              <div class="item item-image">
+                  <img ng-src="data:image/png;base64,{{imageBase64}}">
+              </div>
+
+              <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64,'keenpng','png')">
+                  <i class="icon ion-arrow-expand"></i>
+                  Show base64 image
+              </a>
+
+          </div>
+
+          <div class="list card">
+
+              <div class="item item-avatar">
+                  <img ng-src="data:image/jpeg;base64,{{imageBase64JPEG}}">
+                  <h2>Open Base64 Image (JPG)</h2>
+                  <p>Use "FullScreenImage.showImageBase64(base64,name,type)"</p>
+              </div>
+
+              <div class="item item-image">
+                  <img ng-src="data:image/jpeg;base64,{{imageBase64JPEG}}">
+              </div>
+
+              <a class="item item-icon-left assertive" href="#" ng-click="openImageB64(imageBase64JPEG,'keenjpg','jpg')">
+                  <i class="icon ion-arrow-expand"></i>
+                  Show base64 image
+              </a>
+
+          </div>
+
+          <div class="list card">
+
+              <div class="item item-avatar">
+                  <img ng-src="{{imageUrlPath}}">
+                  <h2>Open Url Path Image</h2>
+                  <p>Use "FullScreenImage.showImageUrl(url)"</p>
+              </div>
+
+              <div class="item item-image">
+                  <img ng-src="{{imageUrlPath}}">
+              </div>
+
+              <a class="item item-icon-left assertive" href="#" ng-click="openImageUrl(imageUrlPath)">
+                  <i class="icon ion-arrow-expand"></i>
+                  Show URL Path image
+              </a>
+
+          </div>
+
+          <div class="list card">
+
+              <div class="item item-avatar">
+                  <img ng-src="{{imageUrlPathJPEG}}">
+                  <h2>Open Url Path Image (JPG)</h2>
+                  <p>Use "FullScreenImage.showImageUrl(url)"</p>
+              </div>
+
+              <div class="item item-image">
+                  <img ng-src="{{imageUrlPathJPEG}}">
+              </div>
+
+              <a class="item item-icon-left assertive" href="#" ng-click="openImageUrl(imageUrlPathJPEG)">
+                  <i class="icon ion-arrow-expand"></i>
+                  Show URL Path image
+              </a>
+
+          </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
