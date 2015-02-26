@@ -5,7 +5,7 @@
 
 #import "FullScreenImage.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import "NSData+Base64.h"
 
 
 @implementation FullScreenImage
@@ -62,11 +62,17 @@
         
         NSString *imageType = [[command.arguments objectAtIndex:0] valueForKey:@"type"];
         
-        if([imageName isEqualToString:@""]){
+        if([imageType isKindOfClass:[NSNull class]] || [imageName isEqualToString:@""]){
             imageName = @"default";
         }
         
-        NSString *str = [NSString stringWithFormat:@"data:image/@%;base64,",imageType];
+        if([imageType isKindOfClass:[NSNull class]] || [imageType isEqualToString:@""]){
+
+            NSData *imageDatatest = [NSData dataFromBase64String:fullPath];
+            imageType = [self contentTypeForImageData:imageDatatest];
+        }
+        
+        NSString *str = [NSString stringWithFormat:@"data:image/%@;base64,",imageType];
         str = [str stringByAppendingString:fullPath];
         NSURL *url = [NSURL URLWithString:str];
         NSData *imageData = [NSData dataWithContentsOfURL:url];

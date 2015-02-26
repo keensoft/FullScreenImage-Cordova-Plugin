@@ -28,6 +28,8 @@
         </config-file>
         <header-file src="src/ios/FullScreenImage.h" />
         <source-file src="src/ios/FullScreenImage.m" />
+         <header-file src="src/ios/NSData+Base64.h" />
+         <source-file src="src/ios/NSData+Base64.m" />
     </platform>
 
 	<!-- Android -->
