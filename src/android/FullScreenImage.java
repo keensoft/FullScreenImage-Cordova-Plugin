@@ -153,7 +153,7 @@ public class FullScreenImage extends CordovaPlugin {
             File filePath= new File(pPath, "output."+extension);
             filePath.createNewFile();
             
-            FileOutputStream os = new FileOutputStream(filePath, true);
+            FileOutputStream os = new FileOutputStream(filePath, false);
             os.write(imageAsBytes);
             os.flush();
             os.close();
