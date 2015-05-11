@@ -7,6 +7,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+      <link href="css/main.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -27,6 +28,10 @@
     <ion-pane >
       <ion-header-bar class="bar-stable">
         <h1 class="title">Full Screen Plugin</h1>
+          <div class="buttons" ng-controller="homeCtrl">
+              <button class="button" ng-click="openModal()">Multiple path</button>
+              <button class="button" ng-click="openModalB64()">Multiple base64</button>
+          </div>
       </ion-header-bar>
       <ion-content ng-controller="homeCtrl">
           <div class="list card">
@@ -123,6 +128,31 @@
               </a>
 
           </div>
+
+          <script id="image-modal.html" type="text/ng-template">
+              <div class="modal image-modal transparent"
+                   ng-click="closeModal()">
+                  <ion-slide-box on-slide-changed="slideChanged(index)"
+                                 show-pager="false">
+                      <ion-slide ng-repeat="oImage in aImages">
+                          <img ng-src="{{oImage.src}}" class="fullscreen-image" />
+                          <p class="info">{{oImage.msg}}</p>
+                      </ion-slide>
+                  </ion-slide-box>
+              </div>
+          </script>
+          <script id="image-modal-base64.html" type="text/ng-template">
+              <div class="modal image-modal transparent"
+                   ng-click="closeModalB64()">
+                  <ion-slide-box on-slide-changed="slideChanged(index)"
+                                 show-pager="false">
+                      <ion-slide ng-repeat="oImage in aImagesB64">
+                          <img ng-src="data:image/{{oImage.type}};base64,{{oImage.src}}" class="fullscreen-image" />
+                          <p class="info">{{oImage.msg}}</p>
+                      </ion-slide>
+                  </ion-slide-box>
+              </div>
+          </script>
       </ion-content>
     </ion-pane>
   </body>
