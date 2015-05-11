@@ -43,22 +43,4 @@ FullScreenImage.prototype.showImageBase64 = function (base64String, name, type) 
 
 };
 
-/*
- * Show multiple images from base64
- *
- * Parameters:
- * base64String Array: base64String
- * name Array: filename to show
- * type Array: image type
- *
- */
-
-FullScreenImage.prototype.showImagesBase64 = function (base64String, name, type) {
-  alert("prototype------");
-  exec(null, null, "FullScreenImage", "showImagesBase64", [{"base64":base64String, "name":name, "type":type}]);
-
-};
-
-
-
 module.exports = new FullScreenImage();
