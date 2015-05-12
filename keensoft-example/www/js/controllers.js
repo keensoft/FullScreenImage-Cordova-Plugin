@@ -24,14 +24,10 @@ angular.module('starter.controllers', [])
       window.FullScreenImage.showImageBase64(url,name,type);
     }
 
-    $scope.openImagesB64 = function(url, name, type){
-      window.FullScreenImage.showImageBase64(url,name,type);
+    $scope.openImageUrl = function(url){
+      window.FullScreenImage.showImageURL(url);
     }
 
-    $scope.openImagesB64 = function(){
-
-      window.FullScreenImage.showImagesBase64($scope.imagearray,$scope.imagenames,$scope.typesarray);
-    }
 
     /*Modal Viewer configurtion*/
 
