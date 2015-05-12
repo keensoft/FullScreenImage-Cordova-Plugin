@@ -35,6 +35,8 @@ You can test the plugin fast and easy. Go to "example/" path and execute [ionic]
 
 First execute: "ionic platform add ios" and then you can open iOS project.
 
+Added Simple Photo Gallery using IonicFramework, loading array of Base64 images or local URL's.
+
 Uninstall
 --------------
 

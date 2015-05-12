@@ -32,6 +32,7 @@ FullScreenImage.prototype.showImageURL = function (url) {
  * Parameters:
  * base64String: base64String
  * name: filename to show
+ * type: image type
  *
  */
 
@@ -41,7 +42,5 @@ FullScreenImage.prototype.showImageBase64 = function (base64String, name, type) 
 
 
 };
-
-
 
 module.exports = new FullScreenImage();
