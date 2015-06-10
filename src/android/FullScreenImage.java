@@ -28,6 +28,7 @@ import android.util.Base64;
 import android.*;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.webkit.MimeTypeMap;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -120,7 +121,7 @@ public class FullScreenImage extends CordovaPlugin {
             Uri path = Uri.fromFile(f);
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setDataAndType(path, "image/"+extension);
+            intent.setDataAndType(path, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension));
             this.cordova.getActivity().startActivity(intent);
             
         } catch (IOException e) {
