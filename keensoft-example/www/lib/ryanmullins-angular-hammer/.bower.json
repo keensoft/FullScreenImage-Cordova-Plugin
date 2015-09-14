@@ -1,0 +1,38 @@
+{
+  "name": "AngularHammer",
+  "version": "2.1.10",
+  "authors": [
+    "Ryan S Mullins <ryan@ryanmullins.org>"
+  ],
+  "homepage": "https://github.com/RyanMullins/angular-hammer",
+  "main": "angular.hammer.js",
+  "license": "MIT",
+  "keywords": [
+    "Angular",
+    "Hammer",
+    "touch",
+    "javascript",
+    "gesture"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "examples"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.0",
+    "hammerjs": ">=2.0.0"
+  },
+  "_release": "2.1.10",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.10",
+    "commit": "d2d40497bc86322e7b9d68b8aa471bf81a5fedf5"
+  },
+  "_source": "git://github.com/ryanmullins/angular-hammer.git",
+  "_target": "~2.1.10",
+  "_originalSource": "ryanmullins-angular-hammer",
+  "_direct": true
+}
