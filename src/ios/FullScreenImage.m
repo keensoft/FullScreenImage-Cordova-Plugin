@@ -71,11 +71,10 @@
             NSData *imageDatatest = [NSData dataFromBase64String:fullPath];
             imageType = [self contentTypeForImageData:imageDatatest];
         }
-        
-        NSString *str = [NSString stringWithFormat:@"data:image/%@;base64,",imageType];
-        str = [str stringByAppendingString:fullPath];
-        NSURL *url = [NSURL URLWithString:str];
-        NSData *imageData = [NSData dataWithContentsOfURL:url];
+
+        //    Problem with large base64 strings
+        //    https://github.com/keensoft/FullScreenImage-Cordova-Plugin/issues/22
+        NSData *imageData = [NSData dataFromBase64String:fullPath];
         UIImage *ret = [UIImage imageWithData:imageData];
         
         
