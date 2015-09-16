@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 
@@ -121,7 +122,8 @@ public class FullScreenImage extends CordovaPlugin {
             Uri path = Uri.fromFile(f);
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setDataAndType(path, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension));
+            // Convert the URI string to lower case to ensure compatibility with MimeTypeMap (see CB-2185).
+            intent.setDataAndType(path, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase(Locale.getDefault())));
             this.cordova.getActivity().startActivity(intent);
             
         } catch (IOException e) {
