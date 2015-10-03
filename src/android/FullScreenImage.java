@@ -100,12 +100,9 @@ public class FullScreenImage extends CordovaPlugin {
         
         InputStream inputStream = null;
         OutputStream outputStream = null;
-        
-        File pPath= Environment.getExternalStorageDirectory();
-        
-        if(!pPath.exists()) {
-            boolean bReturn= pPath.mkdirs();
-        }
+
+        File pPath = getTempDirectoryPath();
+
         try {
             File f= new File(pPath, "output."+extension);
             f.createNewFile();
@@ -144,10 +141,7 @@ public class FullScreenImage extends CordovaPlugin {
         String base64Image = getJSONProperty(json, "base64");
         String name = getJSONProperty(json, "name");
         String extension = getJSONProperty(json, "type");
-        File pPath= Environment.getExternalStorageDirectory();
-        if(!pPath.exists()) {
-            boolean bReturn= pPath.mkdirs();
-        }
+        File pPath = getTempDirectoryPath();
         
         try {
             
@@ -172,5 +166,28 @@ public class FullScreenImage extends CordovaPlugin {
         }
         
         
+    }
+
+
+    /**
+     * Get temporary directory for copied image
+     * Refer to cordova-plugin-camera/src/android/CameraLauncher.java
+     */
+    private File getTempDirectoryPath() {
+        File cache = null;
+
+        // SD Card Mounted
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            cache = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +
+                    "/Android/data/" + cordova.getActivity().getPackageName() + "/cache/");
+        }
+        // Use internal storage
+        else {
+            cache = cordova.getActivity().getCacheDir();
+        }
+
+        // Create the cache directory if it doesn't exist
+        cache.mkdirs();
+        return cache;
     }
 }
