@@ -31,14 +31,17 @@
     [self.commandDelegate runInBackground:^{
         self.documentURLs = [NSMutableArray array];
         
-        
         NSString *fullPath = [[command.arguments objectAtIndex:0] valueForKey:@"url"];
+        NSURL *URL = [NSURL URLWithString:fullPath];
+
+        BOOL fileExists = URL.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:URL.path];
         
-        NSString *soundFilePath = [NSString stringWithFormat:@"%@/www/%@",[[NSBundle mainBundle] resourcePath],fullPath];
-        NSURL *URL = [NSURL fileURLWithPath:soundFilePath];
+        if (!fileExists) {
+            NSString *soundFilePath = [NSString stringWithFormat:@"%@/www/%@",[[NSBundle mainBundle] resourcePath],fullPath];
+            URL = [NSURL fileURLWithPath:soundFilePath];
+        }
         
         if (URL) {
-            
             [self.documentURLs addObject:URL];
             [self setupDocumentControllerWithURL:URL];
             double delayInSeconds = 0.1;
@@ -46,9 +49,6 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 [self.docInteractionController presentPreviewAnimated:YES];
             });
-            
-            
-            
         }
     }];
 }

@@ -1,3 +1,10 @@
 hooks/
 example/.idea
 .idea/
+/nbproject/private/
+build.xml
+manifest.mf
+build-impl.xml
+genfiles.properties
+project.properties
+project.xml

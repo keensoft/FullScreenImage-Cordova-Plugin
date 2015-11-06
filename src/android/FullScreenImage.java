@@ -39,8 +39,8 @@ import org.apache.cordova.CordovaPlugin;
 @SuppressLint("DefaultLocale")
 public class FullScreenImage extends CordovaPlugin {
     private CallbackContext command;
-    
-    
+	private static final String LOG_TAG = "FullScreenImagePlugin";
+
     /**
      * Executes the request.
      *
@@ -60,32 +60,32 @@ public class FullScreenImage extends CordovaPlugin {
     @Override
     public boolean execute (String action, JSONArray args,
                             CallbackContext callback) throws JSONException {
-        
+
         this.command = callback;
-        
+
         if ("showImageURL".equals(action)) {
             showImageURL(args);
-            
+
             return true;
         }
-        
+
         if ("showImageBase64".equals(action)) {
             showImageBase64(args);
-            
+
             return true;
         }
-        
+
         // Returning false results in a "MethodNotFound" error.
         return false;
     }
-    
+
     private String getJSONProperty(JSONObject json, String property) throws JSONException {
         if (json.has(property)) {
             return json.getString(property);
         }
         return null;
     }
-    
+
     /**
      * Show image in full screen from local resources.
      *
@@ -94,42 +94,46 @@ public class FullScreenImage extends CordovaPlugin {
     public void showImageURL (JSONArray args) throws JSONException {
         JSONObject json = args.getJSONObject(0);
         String url = getJSONProperty(json, "url");
-        
-        String filenameArray[] = url.split("\\.");
-        String extension = filenameArray[filenameArray.length-1];
-        
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
-
-        File pPath = getTempDirectoryPath();
-
         try {
-            File f= new File(pPath, "output."+extension);
-            f.createNewFile();
-            inputStream = this.cordova.getActivity().getAssets().open("www/"+url);
-            outputStream =new FileOutputStream(f);
-            byte buf[]=new byte[1024];
-            int len;
-            
-            while((len=inputStream.read(buf))>0)
-                outputStream.write(buf,0,len);
-            outputStream.close();
-            inputStream.close();
-            
-            Uri path = Uri.fromFile(f);
+
+            Uri path = Uri.parse(url);
+            File source = new File(path.getPath());
+            String filenameArray[] = url.split("\\.");
+            String extension = filenameArray[filenameArray.length-1];
+            if (!source.isFile()) {
+                Log.d(LOG_TAG, "Not a file. Trying www/");
+                InputStream inputStream = null;
+                OutputStream outputStream = null;
+
+                File pPath = getTempDirectoryPath();
+
+                File f= new File(pPath, "output."+extension);
+                f.createNewFile();
+                inputStream = this.cordova.getActivity().getAssets().open("www/"+url);
+                outputStream =new FileOutputStream(f);
+                byte buf[]=new byte[1024];
+                int len;
+
+                while((len=inputStream.read(buf))>0)
+                    outputStream.write(buf,0,len);
+                outputStream.close();
+                inputStream.close();
+
+                path = Uri.fromFile(f);
+            } 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             // Convert the URI string to lower case to ensure compatibility with MimeTypeMap (see CB-2185).
             intent.setDataAndType(path, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase(Locale.getDefault())));
             this.cordova.getActivity().startActivity(intent);
-            
+
         } catch (IOException e) {
-            Log.d("FullScreenImagePlugin", "Could not create file: " + e.toString());
-            
+            Log.d(LOG_TAG, "Could not create file: " + e.toString());
+
         }
     }
-    
-    
+
+
     /**
      * Show image in full screen from base64 String.
      * @param base64       Image base64 String
@@ -137,35 +141,35 @@ public class FullScreenImage extends CordovaPlugin {
      */
     public void showImageBase64 (JSONArray args) throws JSONException{
         JSONObject json = args.getJSONObject(0);
-        
+
         String base64Image = getJSONProperty(json, "base64");
         String name = getJSONProperty(json, "name");
         String extension = getJSONProperty(json, "type");
         File pPath = getTempDirectoryPath();
-        
+
         try {
-            
+
             byte[] imageAsBytes = Base64.decode(base64Image, Base64.DEFAULT);
-            
+
             File filePath= new File(pPath, "output."+extension);
             filePath.createNewFile();
-            
+
             FileOutputStream os = new FileOutputStream(filePath, false);
             os.write(imageAsBytes);
             os.flush();
             os.close();
-            
+
             Uri path = Uri.fromFile(filePath);
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setDataAndType(path, "image/*");
             this.cordova.getActivity().startActivity(intent);
-            
+
         } catch (IOException e) {
-            Log.d("FullScreenImagePlugin", "Could not create file: " + e.toString());
+            Log.d(LOG_TAG, "Could not create file: " + e.toString());
         }
-        
-        
+
+
     }
 
 
