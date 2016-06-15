@@ -20,10 +20,9 @@ var FullScreenImage = function () {
  */
 
 FullScreenImage.prototype.showImageURL = function (url) {
-
-  exec(null, null, "FullScreenImage", "showImageURL", [{"url":url}]);
-
-
+     return new Promise(function(resolve, reject) {
+        exec(resolve, reject, "FullScreenImage", "showImageURL", [{"url":url}]);
+      });
 };
 
 /*
@@ -37,10 +36,9 @@ FullScreenImage.prototype.showImageURL = function (url) {
  */
 
 FullScreenImage.prototype.showImageBase64 = function (base64String, name, type) {
-
-  exec(null, null, "FullScreenImage", "showImageBase64", [{"base64":base64String, "name":name, "type":type}]);
-
-
+    return new Promise(function(resolve, reject) {
+        exec(resolve, reject, "FullScreenImage", "showImageBase64", [{"base64":base64String, "name":name, "type":type}]);
+    });
 };
 
 module.exports = new FullScreenImage();
