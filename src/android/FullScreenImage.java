@@ -13,14 +13,17 @@ import java.io.OutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 
 import android.annotation.SuppressLint;
 
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
@@ -33,13 +36,14 @@ import android.webkit.MimeTypeMap;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaInterface;
 
 
 
 @SuppressLint("DefaultLocale")
-public class FullScreenImage extends CordovaPlugin {
+public class FullScreenImage extends CordovaPlugin implements CordovaInterface {
     private CallbackContext command;
-	private static final String LOG_TAG = "FullScreenImagePlugin";
+    private static final String LOG_TAG = "FullScreenImagePlugin";
 
     /**
      * Executes the request.
@@ -62,20 +66,25 @@ public class FullScreenImage extends CordovaPlugin {
                             CallbackContext callback) throws JSONException {
 
         this.command = callback;
+        PluginResult resultStart = new PluginResult(PluginResult.Status.NO_RESULT);
+        resultStart.setKeepCallback(true);
 
         if ("showImageURL".equals(action)) {
             showImageURL(args);
+            callback.sendPluginResult(resultStart);
 
             return true;
         }
 
         if ("showImageBase64".equals(action)) {
             showImageBase64(args);
+            callback.sendPluginResult(resultStart);
 
             return true;
         }
 
         // Returning false results in a "MethodNotFound" error.
+        callback.sendPluginResult(new PluginResult(PluginResult.Status.ERROR));
         return false;
     }
 
@@ -120,16 +129,19 @@ public class FullScreenImage extends CordovaPlugin {
                 inputStream.close();
 
                 path = Uri.fromFile(f);
-            } 
+            }
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             // Convert the URI string to lower case to ensure compatibility with MimeTypeMap (see CB-2185).
             intent.setDataAndType(path, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase(Locale.getDefault())));
-            this.cordova.getActivity().startActivity(intent);
+            this.cordova.setActivityResultCallback (this);
+            this.cordova.startActivityForResult(this, intent, 0);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
+            PluginResult result = new PluginResult(PluginResult.Status.ERROR);
+            result.setKeepCallback(false);
+            this.command.sendPluginResult(result);
             Log.d(LOG_TAG, "Could not create file: " + e.toString());
-
         }
     }
 
@@ -163,13 +175,15 @@ public class FullScreenImage extends CordovaPlugin {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.setDataAndType(path, "image/*");
-            this.cordova.getActivity().startActivity(intent);
+            this.cordova.setActivityResultCallback (this);
+            this.cordova.startActivityForResult(this, intent, 0);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
+            PluginResult result = new PluginResult(PluginResult.Status.ERROR);
+            result.setKeepCallback(false);
+            this.command.sendPluginResult(result);
             Log.d(LOG_TAG, "Could not create file: " + e.toString());
         }
-
-
     }
 
 
@@ -193,5 +207,46 @@ public class FullScreenImage extends CordovaPlugin {
         // Create the cache directory if it doesn't exist
         cache.mkdirs();
         return cache;
+    }
+
+    @Override
+    public void startActivityForResult(CordovaPlugin command, Intent intent, int requestCode) {
+
+    }
+
+    @Override
+    public void setActivityResultCallback(CordovaPlugin plugin) {
+
+    }
+
+    @Override
+    public Activity getActivity() {
+        return null;
+    }
+
+    @Override
+    public ExecutorService getThreadPool() {
+        return null;
+    }
+
+    @Override
+    public void requestPermission(CordovaPlugin plugin, int requestCode, String permission) {
+
+    }
+
+    @Override
+    public void requestPermissions(CordovaPlugin plugin, int requestCode, String[] permissions) {
+
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return false;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        PluginResult result = new PluginResult(PluginResult.Status.OK);
+        result.setKeepCallback(false);
+        this.command.sendPluginResult(result);
     }
 }

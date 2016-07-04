@@ -33,39 +33,47 @@
         
         NSString *fullPath = [[command.arguments objectAtIndex:0] valueForKey:@"url"];
         NSURL *URL = [NSURL URLWithString:fullPath];
+        __block BOOL result;
+        __block CDVPluginResult* resultPlugin = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
 
         BOOL fileExists = URL.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:URL.path];
-        
+
         if (!fileExists) {
             NSString *soundFilePath = [NSString stringWithFormat:@"%@/www/%@",[[NSBundle mainBundle] resourcePath],fullPath];
             URL = [NSURL fileURLWithPath:soundFilePath];
         }
-        
+
         if (URL) {
             [self.documentURLs addObject:URL];
             [self setupDocumentControllerWithURL:URL];
             double delayInSeconds = 0.1;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self.docInteractionController presentPreviewAnimated:YES];
+                result = [self.docInteractionController presentPreviewAnimated:YES];
+
+                if(result){
+                    resultPlugin = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                }
+                [self.commandDelegate sendPluginResult:resultPlugin callbackId:command.callbackId];
+
             });
         }
     }];
 }
 
 - (void) showImageBase64:(CDVInvokedUrlCommand*)command{
-    
+
     [self.commandDelegate runInBackground:^{
         NSString *fullPath = [[command.arguments objectAtIndex:0] valueForKey:@"base64"];
-        
+
         NSString *imageName = [[command.arguments objectAtIndex:0] valueForKey:@"name"];
-        
+
         NSString *imageType = [[command.arguments objectAtIndex:0] valueForKey:@"type"];
-        
+
         if([imageName isKindOfClass:[NSNull class]] || [imageName isEqualToString:@""]){
             imageName = @"default";
         }
-        
+
         if([imageType isKindOfClass:[NSNull class]] || [imageType isEqualToString:@""]){
 
             NSData *imageDatatest = [NSData dataFromBase64String:fullPath];
@@ -76,31 +84,39 @@
         //    https://github.com/keensoft/FullScreenImage-Cordova-Plugin/issues/22
         NSData *imageData = [NSData dataFromBase64String:fullPath];
         UIImage *ret = [UIImage imageWithData:imageData];
-        
-        
+
+
         NSData *imageDataSaved=UIImagePNGRepresentation(ret);
-        
-        
+
+
         NSString *docsDir;
         NSArray *dirPaths;
-        
-        
+        __block BOOL result;
+        __block CDVPluginResult* resultPlugin = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+
+
         dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         docsDir = [dirPaths objectAtIndex:0];
         NSString *completeImageName = [NSString stringWithFormat:@"%@.%@",imageName,imageType];
         NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent:completeImageName]];
         [imageDataSaved writeToFile:databasePath atomically:YES];
-        
+
         NSURL *imageURL=[NSURL fileURLWithPath:databasePath];
-        
+
         if (imageURL) {
             [self.documentURLs addObject:imageURL];
             [self setupDocumentControllerWithURL:imageURL];
             double delayInSeconds = 0.1;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self.docInteractionController presentPreviewAnimated:YES];
+                result = [self.docInteractionController presentPreviewAnimated:YES];
+
+                if(result){
+                    resultPlugin = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                }
+                [self.commandDelegate sendPluginResult:resultPlugin callbackId:command.callbackId];
             });
+
         }
     }];
 }
